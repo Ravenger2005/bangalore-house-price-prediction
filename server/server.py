@@ -1,5 +1,6 @@
 from  flask import Flask,request,jsonify
 import util
+import os
 app = Flask(__name__)
 
 util.load_saved_artifacts()
@@ -28,5 +29,6 @@ def predict_home_price():
 
 
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
     print("Starting python flask for prediction success")
-    app.run()
+    app.run(host="0.0.0.0", port=port)
