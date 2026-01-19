@@ -16,9 +16,6 @@ ENV/
 # PyCharm
 .idea/
 
-# Artifacts
-artifacts/
-
 # OS files
 .DS_Store
 Thumbs.db

@@ -1,15 +1,23 @@
-from  flask import Flask,request,jsonify
+from  flask import Flask,request,jsonify,send_from_directory
 import util
 import os
 app = Flask(__name__)
 
+# This tells Flask to look for your UI in the ../client folder
+app = Flask(__name__, static_url_path='', static_folder='../client')
+
 util.load_saved_artifacts()
+
+# This route serves your app.html when someone visits the main link
+@app.route('/')
+def index():
+    return send_from_directory('../client', 'app.html')
 @app.route('/get_location_names')
 def get_location_names():
     response = jsonify({
         'locations': util.get_location_names()
     })
-    response.headers.add('Access-Control-Allow-origin', '*')
+    response.headers.add('Access-Control-Allow-Origin', '*')
 
     return response
 
